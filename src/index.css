@@ -1,2 +1,75 @@
 @import "tailwindcss";
-@plugin "daisyui";
+
+@plugin "daisyui" {
+    themes: light --default;
+}
+
+
+section {
+    max-width: 1400px;
+    margin: auto;
+    padding: 0 10px;
+}
+
+.myBtn {
+    position: relative;
+    overflow: hidden;
+    z-index: 10;
+    outline: transparent;
+
+}
+
+.myBtn:hover {
+    color: white;
+    box-shadow:transparent;
+    border:transparent;
+
+}
+
+.myBtn::before {
+    content: "";
+    position: absolute;
+    left: 0%;
+    bottom: 0%;
+    background: #e92d28;
+    width: 1px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    transition-duration: 0.3s;
+    z-index: -5;
+    /* transform: scale(40); */
+    /* visibility: hidden; */
+}
+
+.myBtn:hover::before {
+    transform: scale(150);
+    transition-duration: 0.3s;
+    visibility: visible;
+
+
+}
+
+.myBtn::after {
+    content: "";
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    background: #e92d28;
+    width: 1px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    transition-duration: 0.3s;
+    z-index: -5;
+    /* transform: scale(40); */
+
+    /* visibility: hidden; */
+
+}
+
+.myBtn:hover::after {
+    transform: scale(150);
+    transition-duration: 0.3s;
+    visibility: visible;
+
+
+}
