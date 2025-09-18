@@ -1,9 +1,10 @@
 import React from 'react';
+import TopRecipe from './TopRecipe';
 
 const Home = () => {
     return (
         <div>
-            i am home
+            <TopRecipe></TopRecipe>
         </div>
     );
 };
