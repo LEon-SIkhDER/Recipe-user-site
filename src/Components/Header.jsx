@@ -1,4 +1,4 @@
-import React, {  use, useState } from 'react';
+import React, { use } from 'react';
 import { Link } from 'react-router';
 import { AuthContext } from '../AuthContext/AuthContext';
 import SingleHeader from './SingleHeader';
@@ -11,7 +11,7 @@ const Header = () => {
 
 
     return (
-        <div className='h- bg-[position:70%_90%] sm:bg-left bg-no-repeat' style={{ backgroundImage: 'url("/hero.jpg")' }}>
+        <div className=' bg-[position:70%_50%] sm:bg-left bg-no-repeat bg-cover' style={{ backgroundImage: 'url("/hero.jpg")' }}>
             <section className='h-dvh'>
                 <SingleHeader></SingleHeader>
 
@@ -21,7 +21,9 @@ const Header = () => {
                     <div className='mb-28 text-center sm:text-left'>
                         <h1 className='sm:text-6xl text-3xl font-bold text-white sm:leading-18'>Find inspiration with delicious recipes for every taste, meal, and special occasion.</h1>
                         <p className='sm:my-12 my-6  sm:text-xl text-white'>Discover a wide variety of easy and flavorful recipes for every meal and occasion. From quick snacks to gourmet dishes, find inspiration to elevate your cooking and bring joy to your table.</p>
-                        <button className='btn justify-self-start myBtn '>View All Recipes</button>
+                        <Link to={"/all-recipes"}>
+                            <button className='btn justify-self-start myBtn '>View All Recipes</button>
+                        </Link>
                     </div>
 
                 </div>

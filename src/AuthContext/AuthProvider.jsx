@@ -5,10 +5,13 @@ import { auth } from '../../firebase.init';
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
+    const [loading, setLoading] = useState(true)
+    console.log(loading)
     useEffect(() => {
         const unsubscibe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user)
+                setLoading(false)
             }
         })
         return () => unsubscibe()
@@ -30,6 +33,7 @@ const AuthProvider = ({ children }) => {
         createUser,
         signInUser,
         setUser,
+        loading,
 
     }
     return <AuthContext value={userDetails}>{children}</AuthContext>

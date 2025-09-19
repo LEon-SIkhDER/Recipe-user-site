@@ -1,5 +1,5 @@
 import React, { use, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../AuthContext/AuthContext';
 import { MdLogout } from 'react-icons/md';
 import { signOut } from 'firebase/auth';
@@ -7,7 +7,7 @@ import { auth } from '../../firebase.init';
 import Swal from 'sweetalert2';
 
 const SingleHeader = () => {
-    const {user, setUser} = use(AuthContext)
+    const { user, setUser } = use(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -17,8 +17,8 @@ const SingleHeader = () => {
 
 
 
-    console.log(user?.name)
-    console.log(user?.photoURL)
+    // console.log(user?.name)
+    // console.log(user?.photoURL)
 
     const handleSignOut = () => {
         Swal.fire({
@@ -68,8 +68,9 @@ const SingleHeader = () => {
                                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow ">
                                 <li className='text-black sm:text-white'> <Link to={"/"} className='text-lg'>Home</Link> </li>
                                 <li className='text-black sm:text-white'><Link to={"/add-recipe"} className='text-lg'>Add Recipe</Link></li>
+                                <li className='text-black sm:text-white'><Link to={`/my-recipe/${user?.uid}`} className='text-lg'>My Recipe</Link></li>
                                 <li className='text-black sm:text-white'>
-                                    <a className='block text-lg' onClick={(e) => { e.stopPropagation(), setVisibility(!visibility) }}>Item 3</a>
+                                    <a className='block text-lg' onClick={(e) => { e.stopPropagation(), setVisibility(!visibility) }}>Themes</a>
                                     <ul className={`p-2   ${visibility ? "block" : 'hidden'}`} onClick={(e) => e.stopPropagation()}>
                                         <li><a className='text-lg'>Submenu 1</a></li>
                                         <li><a className='text-lg'>Submenu 2</a></li>
@@ -85,10 +86,11 @@ const SingleHeader = () => {
                     <div className="navbar-center hidden lg:flex">
                         <ul className="menu menu-horizontal px-1">
                             <li className=' sm:text-white'><Link to={"/"} className={`text-lg ${location.pathname === "/" ? "text-white" : "text-black"}`}>Home</Link></li>
-                            <li className=' sm:text-white'><Link to={"/add-recipe"} className={`text-lg ${location.pathname === "/" ? "text-white" : "text-black"}`}>Add Recipe</Link></li>
+                            <li className=' sm:text-white'><NavLink to={"/add-recipe"} className={`text-lg ${location.pathname === "/" ? "text-white" : "text-black"}`}>Add Recipe</NavLink></li>
+                            <li className=' sm:text-white'><NavLink to={`/my-recipe/${user?.uid}`} className={`text-lg ${location.pathname === "/" ? "text-white" : "text-black"}`}>My Recipe</NavLink></li>
                             <li className=' sm:text-white group relative'>
                                 {/* <details> */}
-                                <summary className={`text-lg ${location.pathname === "/" ? "text-white" : "text-black"}`}>Parent</summary>
+                                <summary className={`text-lg ${location.pathname === "/" ? "text-white" : "text-black"}`}>Themes</summary>
                                 <ul className="p-2 hidden  group-hover:block bg-white rounded absolute top-[100%] z-10 shadow">
                                     <li className='text-black'><a className=' text-lg' style={{ textWrap: 'inherit' }}>Light Mode</a></li>
                                     <li className='text-black'><a className=' text-lg ' style={{ textWrap: 'inherit' }}>Dark Mode</a></li>

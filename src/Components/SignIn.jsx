@@ -1,5 +1,5 @@
 import React, { use, useState } from 'react';
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../AuthContext/AuthContext';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../../firebase.init';
@@ -8,6 +8,8 @@ const SignIn = () => {
     const { signInUser } = use(AuthContext)
     const navigate = useNavigate()
     const provider = new GoogleAuthProvider()
+    const location = useLocation()
+    console.log(location.state)
 
 
     const [loading, setLoading] = useState(false)
@@ -20,8 +22,14 @@ const SignIn = () => {
         signInUser(email, password)
             .then(result => {
                 console.log(result)
-                navigate("/")
                 setLoading(false)
+                if (location.state) {
+                    navigate(location.state)
+
+                }
+                else {
+                    navigate("/")
+                }
 
             })
             .catch(error => {
@@ -38,7 +46,15 @@ const SignIn = () => {
 
     const handleSignInWithGoogle = () => {
         signInWithPopup(auth, provider)
-            .then(result => console.log(result))
+            .then(result => {
+                console.log(result)
+                if(location.state){
+                    navigate(`${location.state}`)
+                }
+                else{
+                    navigate("/")
+                }
+            })
             .catch(error => console.log(error))
     }
 

@@ -1,28 +1,21 @@
-import { Heart } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import Lottie from 'lottie-react';
+import React from 'react';
 import { IoMdTime } from 'react-icons/io';
-import { Link } from 'react-router';
+import { Link, useLoaderData } from 'react-router';
 
-const TopRecipe = () => {
-    const [data, setData] = useState([])
 
-    useEffect(() => {
-        fetch("http://localhost:3000/sort6")
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                setData(data)
-            })
-    }, [])
+const AllRecipes = () => {
+    const data = useLoaderData()
 
     return (
         <div className='bg-[#f6efea] py-20'>
+
             <section >
-                <h1 className='text-5xl font-semibold text-center mb-5'>Top Recipes</h1>
+                <h1 className='text-5xl font-semibold text-center mb-5'>All Recipes</h1>
                 <p className='text-center  mb-14'>These top-rated dishes are packed with flavor, tested by food lovers, and guaranteed to satisfy your cravings.</p>
-                <div className='grid grid-cols-3 gap-8 '>
+                <div className='grid grid-cols-4 gap-8 '>
                     {data.map((d) =>
-                        <div className=''>
+                        <div className='flex flex-col'>
                             <div>
                                 <Link to={`/recipe-details/${d._id}`}>
                                     <div style={{
@@ -47,30 +40,30 @@ const TopRecipe = () => {
 
                                     </div>
                                 </Link>
-
                                 <span></span>
                             </div>
 
-                            <div className='space-y-2'>
-                                <h1 className='text-sm text-[#e90000] font-semibold mt-1'>{d.title}</h1>
+                            <div className=' flex-1' >
+                                <h1 className='text-sm text-[#e90000] font-semibold mt-1 '>{d.title}</h1>
                                 <h1 className='text-xl text-black font-semibold'>{d.ingredients}.</h1>
-                                <div className='flex justify-between'>
-                                    <span className='flex items-center gap-1'><IoMdTime />{d.time}Min</span>
-                                    <h1>{d.cuisineType}</h1>
-                                </div>
-                                <div className='text-center'>
-                                    <Link to={`/recipe-details/${d._id}`}>
-                                        <button className='btn bg-[#e92d28] mx-auto w-full text-white hover:bg-[#c92722]'>View Details</button>
-                                    </Link>
-                                </div>
+                            </div>
+                            <div className='flex  justify-between  '>
+                                <span className='flex items-center gap-1'><IoMdTime />{d.time}Min</span>
+                                <h1>{d.cuisineType}</h1>
+                            </div>
+                            <div className='text-center '>
+                                <Link to={`/recipe-details/${d._id}`}>
+                                    <button className='btn bg-[#e92d28] mx-auto w-full text-white hover:bg-[#c92722]'>View Details</button>
+                                </Link>
+
                             </div>
                         </div>
                     )}
                 </div>
 
             </section>
-        </div>
+        </div >
     );
 };
 
-export default TopRecipe;
+export default AllRecipes;
