@@ -6,7 +6,6 @@ import { Link } from 'react-router';
 
 const TopRecipe = () => {
     const [data, setData] = useState([])
-
     useEffect(() => {
         fetch("http://localhost:3000/sort6")
             .then(res => res.json())
@@ -15,7 +14,6 @@ const TopRecipe = () => {
                 setData(data)
             })
     }, [])
-
     return (
         <div className='bg-[#f6efea] dark:bg-[#292929] py-20'>
             <section >
@@ -24,16 +22,13 @@ const TopRecipe = () => {
                 <div className='grid sm:grid-cols-3 grid-cols-1 gap-8 '>
                     {data.map((d, index) =>
                         <div className='flex flex-col'>
-
                             <div>
                                 <Fade delay={100 * index} fraction={0.1} triggerOnce>
                                     <Link to={`/recipe-details/${d._id}`}>
                                         <div style={{
                                             backgroundImage: `url(${d.photoUrl})`
-
                                         }}
                                             className='bg-no-repeat bg-[length:100%] hover:bg-[length:120%] transition-all duration-300 p-4 rounded-xl bg-center aspect-[1/1.25] cursor-pointer'
-
                                         >
                                             <div className='flex justify-between items-center'>
                                                 <Fade direction='down' fraction={1} triggerOnce>
@@ -50,14 +45,11 @@ const TopRecipe = () => {
                                                     </div>
                                                 </Fade>
                                             </div>
-
                                         </div>
                                     </Link>
-
                                     <span></span>
                                 </Fade>
                             </div>
-
                             <div className='flex-1 mb-5'>
                                 <h1 className='text-sm text-[#e90000] font-semibold mt-1'>{d.title}</h1>
                                 <h1 className='text-xl text-black dark:text-white font-semibold'>{d.ingredients}.</h1>
@@ -74,7 +66,6 @@ const TopRecipe = () => {
                         </div>
                     )}
                 </div>
-
             </section >
         </div >
     );

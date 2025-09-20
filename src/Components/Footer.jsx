@@ -35,9 +35,6 @@ const Footer = () => {
                         </div>
                     </Fade>
                 </div>
-
-
-
             </section>
         </div>
     );
