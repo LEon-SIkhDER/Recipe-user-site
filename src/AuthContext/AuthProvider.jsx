@@ -7,7 +7,6 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const [dark, setDark] = useState(false)
-    console.log(loading)
     useEffect(() => {
         const darkState = JSON.parse(localStorage.getItem("darkMode"))
         if (!darkState) {
@@ -31,7 +30,6 @@ const AuthProvider = ({ children }) => {
         const unsubscibe = onAuthStateChanged(auth, (user) => {
             setUser(user)
             setLoading(false)
-            console.log("setting loading")
         })
         return () => unsubscibe()
     }, [])

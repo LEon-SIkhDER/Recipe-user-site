@@ -10,8 +10,6 @@ const AddRecipe = () => {
 
 
     const handleCheckbox = (e) => {
-        console.log(e.target.checked)
-        console.log(e.target.value)
         const { value, checked } = e.target
         if (checked) {
             setCategory([...category, value])

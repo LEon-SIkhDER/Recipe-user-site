@@ -6,8 +6,6 @@ import { Fade } from 'react-awesome-reveal';
 
 const Header = () => {
     // const [visibility, setVisibility] = useState(false)
-    const user = use(AuthContext)
-    console.log(user)
     return (
         <div className=' bg-[position:70%_50%] sm:bg-left bg-no-repeat bg-cover ' style={{ backgroundImage: 'url("/hero.jpg")' }}>
             <section className='h-dvh'>
