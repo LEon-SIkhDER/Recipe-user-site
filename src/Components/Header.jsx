@@ -8,16 +8,10 @@ const Header = () => {
     // const [visibility, setVisibility] = useState(false)
     const user = use(AuthContext)
     console.log(user)
-
-
-
     return (
         <div className=' bg-[position:70%_50%] sm:bg-left bg-no-repeat bg-cover ' style={{ backgroundImage: 'url("/hero.jpg")' }}>
             <section className='h-dvh'>
                 <SingleHeader></SingleHeader>
-
-
-
                 <div className='h-full flex flex-col justify-center w-auto  sm:w-[70%] items-center'>
                     <div className='mb-28 text-center sm:text-left'>
                         <Fade duration={2000} triggerOnce>
@@ -32,31 +26,7 @@ const Header = () => {
                             </Link>
                         </Fade>
                     </div>
-
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </section>
         </div>
     );

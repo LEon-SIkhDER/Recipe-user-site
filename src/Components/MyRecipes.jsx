@@ -19,10 +19,8 @@ const MyRecipes = () => {
                                     <Link to={`/recipe-details/${d._id}`}>
                                         <div style={{
                                             backgroundImage: `url(${d.photoUrl})`
-
                                         }}
                                             className='bg-no-repeat bg-[length:100%] hover:bg-[length:120%] transition-all duration-300 p-4 rounded-xl bg-center aspect-[1/1.25] cursor-pointer'
-
                                         >
                                             <div className='flex justify-between items-center'>
                                                 <div className='bg-white text-[#e92d28] inline-flex px-2 rounded-full gap-1 py-[5px] items-center'>
@@ -36,13 +34,11 @@ const MyRecipes = () => {
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="red" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </Link>
                                     <span></span>
                                 </div>
                             </Fade>
-
                             <div className=' flex-1' >
                                 <h1 className='text-sm text-[#e90000] font-semibold mt-1 '>{d.title}</h1>
                                 <h1 className='text-xl text-black font-semibold'>{d.ingredients}.</h1>
@@ -55,7 +51,6 @@ const MyRecipes = () => {
                                 <Link to={`/recipe-details/${d._id}`}>
                                     <button className='btn bg-[#e92d28] mx-auto w-full text-white hover:bg-[#c92722]'>View Details</button>
                                 </Link>
-
                             </div>
                         </div>
                     )}

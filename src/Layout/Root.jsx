@@ -12,7 +12,6 @@ const Root = () => {
     return (
         <div className={`${dark?"dark":""}`}>
             {location.pathname === "/" ? <Header></Header> : <SingleHeader></SingleHeader>}
-
             <Outlet></Outlet>
             <Footer></Footer>
         </div>

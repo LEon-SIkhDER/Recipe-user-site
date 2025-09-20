@@ -7,10 +7,8 @@ import { Link, useLoaderData } from 'react-router';
 
 const AllRecipes = () => {
     const data = useLoaderData()
-
     return (
         <div className='bg-[#f6efea] py-20'>
-
             <section >
                 <h1 className='text-5xl font-semibold text-center mb-5'>All Recipes</h1>
                 <p className='text-center  mb-14'>These top-rated dishes are packed with flavor, tested by food lovers, and guaranteed to satisfy your cravings.</p>
@@ -22,10 +20,8 @@ const AllRecipes = () => {
                                     <Link to={`/recipe-details/${d._id}`}>
                                         <div style={{
                                             backgroundImage: `url(${d.photoUrl})`
-
                                         }}
                                             className='bg-no-repeat bg-[length:100%] hover:bg-[length:120%] transition-all duration-300 p-4 rounded-xl bg-center aspect-[1/1.25] cursor-pointer'
-
                                         >
                                             <div className='flex justify-between items-center'>
                                                     <div className='bg-white text-[#e92d28] inline-flex px-2 rounded-full gap-1 py-[5px] items-center'>
@@ -58,15 +54,12 @@ const AllRecipes = () => {
                                 <Link to={`/recipe-details/${d._id}`}>
                                     <button className='btn bg-[#e92d28] mx-auto w-full text-white hover:bg-[#c92722]'>View Details</button>
                                 </Link>
-
                             </div>
                             {/* </Fade> */}
                         </div>
-
                     )
                     }
                 </div >
-
             </section >
         </div >
     );
