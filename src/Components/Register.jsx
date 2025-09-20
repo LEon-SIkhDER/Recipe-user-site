@@ -22,7 +22,6 @@ const Register = () => {
         const photoUrl = e.target.photoUrl.value
         const email = e.target.email.value
         const password = e.target.password.value
-        console.log(name, photoUrl, email, password)
 
         createUser(email, password)
             .then((result) => {
@@ -59,7 +58,6 @@ const Register = () => {
 
             })
             .catch((error) => {
-                console.log("the error is:", error.code)
                 if (error.code === "auth/email-already-in-use") {
                     setError("This Email Is Already In Use")
                 }

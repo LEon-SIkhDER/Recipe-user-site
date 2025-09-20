@@ -9,7 +9,6 @@ const SignIn = () => {
     const navigate = useNavigate()
     const provider = new GoogleAuthProvider()
     const location = useLocation()
-    console.log(location.state)
 
 
     const [loading, setLoading] = useState(false)

@@ -9,7 +9,6 @@ const RecipeDetails = () => {
     const [like, setLike] = useState(false)
     const [likeState, setLikeState] = useState(false)
     const [likeCount, setLikeCount] = useState(data.likes)
-    console.log(likeCount)
     if (like) {
         setTimeout(() => {
             setLike(false)
@@ -20,12 +19,10 @@ const RecipeDetails = () => {
         setLikeCount(likeCount + 1)
         setLikeState(true)
         toast.success(`Liked on ${data.title}`)
-        console.log("like clicked")
     }
     useEffect(() => {
         if (likeState) {
             setTimeout(() => {
-                console.log("new like count", likeCount)
                 const likeInfo = { likes: likeCount }
                 fetch(`http://localhost:3000/recipes/${data._id}`, {
                     method: "PATCH",

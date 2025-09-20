@@ -5,7 +5,6 @@ import { Link, useLoaderData } from 'react-router';
 
 const MyRecipes = () => {
     const data = useLoaderData()
-    console.log(data)
     return (
         <div className='bg-[#f6efea] py-20'>
             <section >
