@@ -6,38 +6,27 @@ import { toast, ToastContainer } from 'react-toastify';
 const RecipeDetails = () => {
     const data = useLoaderData()
     const { user } = use(AuthContext)
-
     const [like, setLike] = useState(false)
     const [likeState, setLikeState] = useState(false)
     const [likeCount, setLikeCount] = useState(data.likes)
     console.log(likeCount)
-
-
     if (like) {
         setTimeout(() => {
             setLike(false)
         }, 500);
     }
-
-
     const handleLike = () => {
         setLike(true)
         setLikeCount(likeCount + 1)
         setLikeState(true)
         toast.success(`Liked on ${data.title}`)
         console.log("like clicked")
-
-
-
-
     }
     useEffect(() => {
         if (likeState) {
             setTimeout(() => {
                 console.log("new like count", likeCount)
                 const likeInfo = { likes: likeCount }
-
-
                 fetch(`http://localhost:3000/recipes/${data._id}`, {
                     method: "PATCH",
                     headers: {
@@ -45,21 +34,9 @@ const RecipeDetails = () => {
                     },
                     body: JSON.stringify(likeInfo)
                 })
-
             }, 1000);
         }
-
-
-
     }, [likeCount])
-
-
-
-
-    // console.log(user.photoURL)
-
-
-
     return (
         <div className=' bg-[#f6efea] py-20'>
             <ToastContainer />
@@ -75,7 +52,6 @@ const RecipeDetails = () => {
                                         stroke={like ? "blue" : "black"} stroke-width={like ? "0" : "2"} stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-thumbs-up-icon lucide-thumbs-up"><path d="M7 10v12" /><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z" /></svg>
                                 </button>
                                 <span className='text-2xl'> {likeCount} Likes</span></div>
-
                         </div>
                         <h1>{data.createdAt}</h1>
                         <div><span className='font-semibold text-lg'>Category:</span><span>{data.category}.</span></div>
@@ -84,7 +60,6 @@ const RecipeDetails = () => {
                         <div className='flex '><span className='font-semibold text-lg '>Instructions:</span><span className='text-justify mt-1'>{data.instructions}</span></div>
                         <div><span className='font-semibold text-lg'>Cooking Time:</span><span>{data.time}Min.</span></div>
                     </div>
-
                     {/* <button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-thumbs-up-icon lucide-thumbs-up"><path d="M7 10v12" /><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z" /></svg></button> */}
                 </div>
             </section>
