@@ -12,7 +12,7 @@ const Header = () => {
 
 
     return (
-        <div className=' bg-[position:70%_50%] sm:bg-left bg-no-repeat bg-cover' style={{ backgroundImage: 'url("/hero.jpg")' }}>
+        <div className=' bg-[position:70%_50%] sm:bg-left bg-no-repeat bg-cover ' style={{ backgroundImage: 'url("/hero.jpg")' }}>
             <section className='h-dvh'>
                 <SingleHeader></SingleHeader>
 
@@ -21,7 +21,7 @@ const Header = () => {
                 <div className='h-full flex flex-col justify-center w-auto  sm:w-[70%] items-center'>
                     <div className='mb-28 text-center sm:text-left'>
                         <Fade duration={2000} triggerOnce>
-                            <h1 className='sm:text-6xl text-3xl font-bold text-white sm:leading-18  '>Find inspiration with delicious recipes for every taste, meal, and special occasion.</h1>
+                            <h1 className='sm:text-6xl text-2xl sm:text-left text-justify font-bold text-white sm:leading-18  lastText ' >Find inspiration with delicious recipes for every taste, meal, and special occasion.</h1>
                         </Fade>
                         <Fade duration={2000} triggerOnce>
                             <p className='sm:my-12 my-6  sm:text-xl text-white'>Discover a wide variety of easy and flavorful recipes for every meal and occasion. From quick snacks to gourmet dishes, find inspiration to elevate your cooking and bring joy to your table.</p>

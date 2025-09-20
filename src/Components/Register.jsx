@@ -1,5 +1,5 @@
 import React, { use, useState } from 'react';
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../AuthContext/AuthContext';
 import { updateProfile } from 'firebase/auth';
 import { auth } from '../../firebase.init';
@@ -7,9 +7,9 @@ import { auth } from '../../firebase.init';
 const Register = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
-
     const { createUser } = use(AuthContext)
     const navigate = useNavigate()
+    const location = useLocation()
 
 
 
@@ -25,50 +25,56 @@ const Register = () => {
         console.log(name, photoUrl, email, password)
 
         createUser(email, password)
-        .then((result)=>{
-            console.log(result)
-            updateProfile(auth.currentUser,{
-                displayName:name,
-                photoURL:photoUrl
-            }).then(result=>{
+            .then((result) => {
                 console.log(result)
-                setLoading(false)
-                navigate('/')
+                updateProfile(auth.currentUser, {
+                    displayName: name,
+                    photoURL: photoUrl
+                }).then(result => {
+                    console.log(result)
+                    setLoading(false)
+                    if (location.state) {
+                        navigate(location.state)
+                    }
+                    else {
+                        navigate('/')
+
+                    }
+
+                })
+                    .catch(error => {
+                        console.log(error)
+                    })
+
+
+
+
+
+
+
+
+
+
+
 
             })
-            .catch(error=>{
-                console.log(error)
+            .catch((error) => {
+                console.log("the error is:", error.code)
+                if (error.code === "auth/email-already-in-use") {
+                    setError("This Email Is Already In Use")
+                }
+
+
+
+
+
+
             })
 
 
 
 
 
-
-
-
-
-
-
-
-        })
-        .catch((error)=>{
-            console.log("the error is:",error.code)
-            if(error.code === "auth/email-already-in-use"){
-                setError("This Email Is Already In Use")
-            }
-
-
-
-
-
-
-        })
-
-        
-        
-
-   
 
     }
 
@@ -80,17 +86,17 @@ const Register = () => {
                         <h1 className="text-4xl font-bold">Register now!</h1>
                         <form onSubmit={handleRegister} className="fieldset">
                             <label className="label text-black font-semibold">Name</label>
-                            <input type="text" className="input" placeholder="Name" name='name' required/>
+                            <input type="text" className="input" placeholder="Name" name='name' required />
                             <label className="label text-black font-semibold">Photo Url</label>
-                            <input type="text" className="input" placeholder="Photo Url" name='photoUrl' required/>
+                            <input type="text" className="input" placeholder="Photo Url" name='photoUrl' required />
                             <label className="label text-black font-semibold">Email</label>
-                            <input type="email" className="input" placeholder="Email" name='email' required/>
+                            <input type="email" className="input" placeholder="Email" name='email' required />
                             <label className="label text-black font-semibold">Password</label>
-                            <input type="password" className="input" placeholder="Password" name='password' required/>
+                            <input type="password" className="input" placeholder="Password" name='password' required />
                             <div><a className="link link-hover">Forgot password?</a></div>
-                            {error&&<p className='text-red-500 '>{error}</p>}
+                            {error && <p className='text-red-500 '>{error}</p>}
                             <h1 className='text-sm font-semibold text-black '>Already Have An Account? <Link to={"/signin"} className='text-pink-600 underline'>LogIn</Link></h1>
-                            <button className="btn btn-neutral mt-4">{loading?<span className="loading loading-spinner loading-md"></span>:"Register"}</button>
+                            <button className="btn btn-neutral mt-4">{loading ? <span className="loading loading-spinner loading-md"></span> : "Register"}</button>
                             <div className='flex items-center gap-2'>
                                 <div className='border-b border-gray-300 w-full'></div>
                                 <h1>OR</h1>

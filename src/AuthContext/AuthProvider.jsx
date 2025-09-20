@@ -6,8 +6,23 @@ import { auth } from '../../firebase.init';
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [dark, setDark] = useState(false)
     console.log(loading)
+    useEffect(() => {
+        const darkState = JSON.parse(localStorage.getItem("darkMode"))
+        if (!darkState) {
+            localStorage.setItem("darkMode", JSON.stringify(dark))
+        }
+        else {
+            setDark(darkState)
+        }
+    }, [dark])
 
+    const setDarkMode = (value) => {
+        setDark(value)
+        localStorage.setItem("darkMode", JSON.stringify(value))
+
+    }
 
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -23,10 +38,10 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unsubscibe = onAuthStateChanged(auth, (user) => {
-                setUser(user)
-                setLoading(false)
-                console.log("setting loading")
-            
+            setUser(user)
+            setLoading(false)
+            console.log("setting loading")
+
         })
         return () => unsubscibe()
     }, [])
@@ -42,6 +57,8 @@ const AuthProvider = ({ children }) => {
         signInUser,
         setUser,
         loading,
+        dark,
+        setDarkMode,
 
     }
     return <AuthContext value={userDetails}>{children}</AuthContext>

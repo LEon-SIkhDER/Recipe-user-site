@@ -17,13 +17,13 @@ const TopRecipe = () => {
     }, [])
 
     return (
-        <div className='bg-[#f6efea] py-20'>
+        <div className='bg-[#f6efea] dark:bg-[#292929] py-20'>
             <section >
-                <h1 className='text-5xl font-semibold text-center mb-5'>Top Recipes</h1>
-                <p className='text-center  mb-14'>These top-rated dishes are packed with flavor, tested by food lovers, and guaranteed to satisfy your cravings.</p>
-                <div className='grid grid-cols-3 gap-8 '>
+                <h1 className='text-5xl font-semibold text-center mb-5 dark:text-white'>Top Recipes</h1>
+                <p className='text-center  mb-14 dark:text-white'>These top-rated dishes are packed with flavor, tested by food lovers, and guaranteed to satisfy your cravings.</p>
+                <div className='grid sm:grid-cols-3 grid-cols-1 gap-8 '>
                     {data.map((d, index) =>
-                        <div className=''>
+                        <div className='flex flex-col'>
 
                             <div>
                                 <Fade delay={100 * index} fraction={0.1} triggerOnce>
@@ -37,17 +37,17 @@ const TopRecipe = () => {
                                         >
                                             <div className='flex justify-between items-center'>
                                                 <Fade direction='down' fraction={1} triggerOnce>
-                                                <div className='bg-white text-[#e92d28] inline-flex px-2 rounded-full gap-1 py-[5px] items-center'>
-                                                    <span className='inline-block'>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="red" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg>
-                                                    </span>
-                                                    <h1 className='text-[#e92d28] font-semibold bg-white inline-block   rounded-full text-sm'>Top</h1>
-                                                </div>
+                                                    <div className='bg-white text-[#e92d28] inline-flex px-2 rounded-full gap-1 py-[5px] items-center'>
+                                                        <span className='inline-block'>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="red" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg>
+                                                        </span>
+                                                        <h1 className='text-[#e92d28] font-semibold bg-white inline-block   rounded-full text-sm'>Top</h1>
+                                                    </div>
                                                 </Fade>
-                                                <Fade direction='down' fraction={1} delay={200}triggerOnce>
-                                                <div className='bg-white p-2 rounded-full'>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="red" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg>
-                                                </div>
+                                                <Fade direction='down' fraction={1} delay={200} triggerOnce>
+                                                    <div className='bg-white p-2 rounded-full'>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="red" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg>
+                                                    </div>
                                                 </Fade>
                                             </div>
 
@@ -58,22 +58,22 @@ const TopRecipe = () => {
                                 </Fade>
                             </div>
 
-                            <div className='space-y-2'>
+                            <div className='flex-1 mb-5'>
                                 <h1 className='text-sm text-[#e90000] font-semibold mt-1'>{d.title}</h1>
-                                <h1 className='text-xl text-black font-semibold'>{d.ingredients}.</h1>
-                                <div className='flex justify-between'>
-                                    <span className='flex items-center gap-1'><IoMdTime />{d.time}Min</span>
-                                    <h1>{d.cuisineType}</h1>
-                                </div>
-                                <div className='text-center'>
-                                    <Link to={`/recipe-details/${d._id}`}>
-                                        <button className='btn bg-[#e92d28] mx-auto w-full text-white hover:bg-[#c92722]'>View Details</button>
-                                    </Link>
+                                <h1 className='text-xl text-black dark:text-white font-semibold'>{d.ingredients}.</h1>
+                            </div>
+                            <div className='flex justify-between dark:text-white'>
+                                <span className='flex items-center gap-1'><IoMdTime />{d.time}Min</span>
+                                <h1>{d.cuisineType}</h1>
+                            </div>
+                            <div className='text-center'>
+                                <Link to={`/recipe-details/${d._id}`}>
+                                    <button className='btn bg-[#e92d28] mx-auto w-full text-white hover:bg-[#c92722] dark:border-transparent dark:shadow-none'>View Details</button>
+                                </Link>
                             </div>
                         </div>
-                        </div>
                     )}
-        </div>
+                </div>
 
             </section >
         </div >

@@ -63,11 +63,11 @@ const RecipeDetails = () => {
     return (
         <div className=' bg-[#f6efea] py-20'>
             <ToastContainer />
-            <section className='flex  gap-20 '>
+            <section className='grid sm:grid-cols-2 grid-cols-1  gap-20 '>
                 <img className='rounded-2xl' src={data.photoUrl} alt="" />
                 <div className='flex justify-between flex-col py-8'>
                     <div className='space-y-1'>
-                        <div className='flex gap-10'>
+                        <div className='sm:flex block gap-10'>
                             <h1 className='text-5xl font-bold font-[rancho] text-[#e90000]'>{data.title}</h1>
                             <div className='flex items-center gap-0.5'>
                                 <button disabled={user.uid === data.uid} onClick={handleLike} className='cursor-pointer  active:scale-90 '>
