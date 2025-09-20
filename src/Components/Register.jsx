@@ -22,6 +22,40 @@ const Register = () => {
         const photoUrl = e.target.photoUrl.value
         const email = e.target.email.value
         const password = e.target.password.value
+        if(password.length < 6){
+            setError("Password must be at least 6 characters")
+            setLoading(false)
+            return
+        }
+        else if(!/[A-Z]/.test(password)){
+            setError("Password must have one Uppercase")
+
+            setLoading(false)
+            return
+
+
+        }
+        else if(!/[a-z]/.test(password)){
+            setError("Password must have one Lowercase")
+
+            setLoading(false)
+            return
+
+
+        }
+        console.log("why !!")
+
+
+
+
+
+
+
+
+
+
+
+
 
         createUser(email, password)
             .then((result) => {
@@ -58,6 +92,7 @@ const Register = () => {
 
             })
             .catch((error) => {
+                setLoading(false)
                 if (error.code === "auth/email-already-in-use") {
                     setError("This Email Is Already In Use")
                 }
@@ -84,13 +119,13 @@ const Register = () => {
                         <h1 className="text-4xl font-bold">Register now!</h1>
                         <form onSubmit={handleRegister} className="fieldset">
                             <label className="label text-black font-semibold">Name</label>
-                            <input type="text" className="input" placeholder="Name" name='name' required />
+                            <input type="text" className="input" placeholder="Name" name='name' required/>
                             <label className="label text-black font-semibold">Photo Url</label>
-                            <input type="text" className="input" placeholder="Photo Url" name='photoUrl' required />
+                            <input type="text" className="input" placeholder="Photo Url" name='photoUrl' required/>
                             <label className="label text-black font-semibold">Email</label>
                             <input type="email" className="input" placeholder="Email" name='email' required />
                             <label className="label text-black font-semibold">Password</label>
-                            <input type="password" className="input" placeholder="Password" name='password' required />
+                            <input type="password" className="input" placeholder="Password" name='password' required/>
                             <div><a className="link link-hover">Forgot password?</a></div>
                             {error && <p className='text-red-500 '>{error}</p>}
                             <h1 className='text-sm font-semibold text-black '>Already Have An Account? <Link to={"/signin"} className='text-pink-600 underline'>LogIn</Link></h1>

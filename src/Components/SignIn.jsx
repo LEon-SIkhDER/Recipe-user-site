@@ -10,10 +10,13 @@ const SignIn = () => {
     const provider = new GoogleAuthProvider()
     const location = useLocation()
 
+    const [error, setError] = useState(null)
+
 
     const [loading, setLoading] = useState(false)
     const handleLogIn = (e) => {
         e.preventDefault()
+        setError("")
         setLoading(true)
         const email = e.target.email.value
         const password = e.target.password.value
@@ -34,6 +37,7 @@ const SignIn = () => {
             .catch(error => {
                 console.log(error)
                 setLoading(false)
+                setError("Wrong username or password")
             })
 
     }
@@ -71,6 +75,7 @@ const SignIn = () => {
                             <label className="label text-black font-semibold">Password</label>
                             <input type="password" className="input" placeholder="Password" name='password' required />
                             <div><a className="link link-hover">Forgot password?</a></div>
+                            {error&& <p className='text-red-500'>{error}</p>}
                             <h1 className='text-sm font-semibold text-black '>Don't Have An Account? <Link to={"/register"} className='text-pink-600 underline'>Register</Link></h1>
                             <button className="btn btn-neutral mt-4">{loading ? <span className="loading loading-spinner loading-md"></span> : "Login"}</button>
                             <div className='flex items-center gap-2'>
