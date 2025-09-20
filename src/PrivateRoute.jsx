@@ -8,17 +8,18 @@ import loadingLottie from "./Lottie/Loading.json"
 
 const PrivateRoute = ({ children }) => {
     const { user, loading } = use(AuthContext)
+    // console.log(loading)
     const location = useLocation()
 
     // const [loading, setLoading] = useState(true);
-    if (loading) {
+    if(loading) {
         return (
             <div className='w-2xs mx-auto '>
                 <Lottie animationData={loadingLottie} />
             </div>
         )
     }
-    if (!user) {
+    if(!user) {
         return <Navigate to={"/signin"} state={location.pathname} />
     }
 

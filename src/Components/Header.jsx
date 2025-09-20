@@ -2,6 +2,7 @@ import React, { use } from 'react';
 import { Link } from 'react-router';
 import { AuthContext } from '../AuthContext/AuthContext';
 import SingleHeader from './SingleHeader';
+import { Fade } from 'react-awesome-reveal';
 
 const Header = () => {
     // const [visibility, setVisibility] = useState(false)
@@ -19,11 +20,17 @@ const Header = () => {
 
                 <div className='h-full flex flex-col justify-center w-auto  sm:w-[70%] items-center'>
                     <div className='mb-28 text-center sm:text-left'>
-                        <h1 className='sm:text-6xl text-3xl font-bold text-white sm:leading-18'>Find inspiration with delicious recipes for every taste, meal, and special occasion.</h1>
-                        <p className='sm:my-12 my-6  sm:text-xl text-white'>Discover a wide variety of easy and flavorful recipes for every meal and occasion. From quick snacks to gourmet dishes, find inspiration to elevate your cooking and bring joy to your table.</p>
-                        <Link to={"/all-recipes"}>
-                            <button className='btn justify-self-start myBtn '>View All Recipes</button>
-                        </Link>
+                        <Fade duration={2000} triggerOnce>
+                            <h1 className='sm:text-6xl text-3xl font-bold text-white sm:leading-18  '>Find inspiration with delicious recipes for every taste, meal, and special occasion.</h1>
+                        </Fade>
+                        <Fade duration={2000} triggerOnce>
+                            <p className='sm:my-12 my-6  sm:text-xl text-white'>Discover a wide variety of easy and flavorful recipes for every meal and occasion. From quick snacks to gourmet dishes, find inspiration to elevate your cooking and bring joy to your table.</p>
+                        </Fade>
+                        <Fade direction='down' triggerOnce>
+                            <Link to={"/all-recipes"}>
+                                <button className='btn justify-self-start myBtn '>View All Recipes</button>
+                            </Link>
+                        </Fade>
                     </div>
 
                 </div>

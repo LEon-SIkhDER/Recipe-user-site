@@ -8,21 +8,22 @@ import AllRecipes from "./Components/AllRecipes";
 import RecipeDetails from "./Components/RecipeDetails";
 import MyRecipes from "./Components/MyRecipes";
 import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "./Components/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       { index: true, Component: Home },
       { path: "/signin", Component: SignIn },
       { path: "/register", Component: Register },
       {
         path: "/add-recipe",
-        element:<PrivateRoute><AddRecipe></AddRecipe></PrivateRoute>
+        element: <PrivateRoute><AddRecipe></AddRecipe></PrivateRoute>
 
-       },
+      },
       { path: "/all-recipes", loader: () => fetch("http://localhost:3000/recipes"), Component: AllRecipes },
 
 
@@ -35,9 +36,10 @@ export const router = createBrowserRouter([
       {
         path: "/my-recipe/:id",
         loader: ({ params }) => fetch(`http://localhost:3000/my-recipe/${params.id}`),
-        element: <MyRecipes></MyRecipes>
-      }
-
+        element: <PrivateRoute><MyRecipes></MyRecipes></PrivateRoute>
+      },
+      
     ]
   },
+  {path:"*", Component:ErrorPage}
 ]);

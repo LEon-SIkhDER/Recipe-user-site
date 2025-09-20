@@ -1,28 +1,68 @@
-import React, { use, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import { AuthContext } from '../AuthContext/AuthContext';
+import { toast, ToastContainer } from 'react-toastify';
 
 const RecipeDetails = () => {
     const data = useLoaderData()
-    const {user} = use(AuthContext)
-    console.log("this is user uid:",user.uid)
+    const { user } = use(AuthContext)
+
     const [like, setLike] = useState(false)
+    const [likeState, setLikeState] = useState(false)
     const [likeCount, setLikeCount] = useState(data.likes)
+    console.log(likeCount)
+
 
     if (like) {
         setTimeout(() => {
             setLike(false)
         }, 500);
     }
-    console.log("this is data uid:",data.uid)
-    if(!user){
-        return (
-            <div>loading</div>
-        )
+
+
+    const handleLike = () => {
+        setLike(true)
+        setLikeCount(likeCount + 1)
+        setLikeState(true)
+        toast.success(`Liked on ${data.title}`)
+        console.log("like clicked")
+
+
+
+
     }
+    useEffect(() => {
+        if (likeState) {
+            setTimeout(() => {
+                console.log("new like count", likeCount)
+                const likeInfo = { likes: likeCount }
+
+
+                fetch(`http://localhost:3000/recipes/${data._id}`, {
+                    method: "PATCH",
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify(likeInfo)
+                })
+
+            }, 1000);
+        }
+
+
+
+    }, [likeCount])
+
+
+
+
+    // console.log(user.photoURL)
+
+
 
     return (
         <div className=' bg-[#f6efea] py-20'>
+            <ToastContainer />
             <section className='flex  gap-20 '>
                 <img className='rounded-2xl' src={data.photoUrl} alt="" />
                 <div className='flex justify-between flex-col py-8'>
@@ -30,7 +70,7 @@ const RecipeDetails = () => {
                         <div className='flex gap-10'>
                             <h1 className='text-5xl font-bold font-[rancho] text-[#e90000]'>{data.title}</h1>
                             <div className='flex items-center gap-0.5'>
-                                <button disabled={user.uid === data.uid}  onClick={() => {setLike(true), setLikeCount(likeCount + 1)}} className='cursor-pointer  active:scale-90 '>
+                                <button disabled={user.uid === data.uid} onClick={handleLike} className='cursor-pointer  active:scale-90 '>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill={like ? "blue" : "none"}
                                         stroke={like ? "blue" : "black"} stroke-width={like ? "0" : "2"} stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-thumbs-up-icon lucide-thumbs-up"><path d="M7 10v12" /><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z" /></svg>
                                 </button>

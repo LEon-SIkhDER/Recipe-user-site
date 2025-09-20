@@ -1,4 +1,5 @@
 import React from 'react';
+import { Fade } from 'react-awesome-reveal';
 import { FaFacebook, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 
@@ -23,15 +24,16 @@ const Footer = () => {
                         <h2>Contact Us</h2>
                     </div>
                 </div>
-                <div className='text-center space-y-4'>
+                <div className='text-center space-y-4 '>
                     <div className='w-full border-b border-gray-200'></div>
                     <p>RannaGhor offers a world of delicious recipes, cooking inspiration, and culinary tips. Explore new flavors, master techniques, and bring your passion for cooking to life.</p>
                     <p>© 2025 RannaGhor. All rights reserved & Designed by <span className='font-[mr_dafoe] sm:inline-block block'>Leon Sikhder.</span></p>
-                    <div className='flex items-center gap-2.5 justify-center'  >
-                        <img className=' w-10' src="/logo.png" alt="" />
-                        <a className="text-4xl font-bold text-[#e92d28] ">RannaGhor</a>
-                    </div>
-
+                    <Fade triggerOnce>
+                        <div className='flex items-center gap-2.5 justify-center'  >
+                            <img className=' w-10' src="/logo.png" alt="" />
+                            <a className="text-4xl font-bold text-[#e92d28] ">RannaGhor</a>
+                        </div>
+                    </Fade>
                 </div>
 
 
