@@ -10,17 +10,8 @@ const SingleHeader = () => {
     const { user, setUser, setDarkMode, dark } = use(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
-
-
-
     const [visibility, setVisibility] = useState(false)
     const [dropdown, setDropDown] = useState(false)
-
-
-
-    // console.log(user?.name)
-    // console.log(user?.photoURL)
-
     const handleSignOut = () => {
         Swal.fire({
             title: "Are you sure?",
@@ -37,24 +28,16 @@ const SingleHeader = () => {
                         console.log(result)
                         if (location.pathname === "/") {
                             setUser(null)
-
                         }
                         else {
                             navigate("/")
                             setUser(null)
-
                         }
                     })
                     .catch(error => console.log(error))
             }
         });
     }
-
-
-
-
-
-
     return (
         <div>
             <section>
@@ -111,17 +94,12 @@ const SingleHeader = () => {
                                 <h1>{user?.email}</h1>
                                 <div className='border-b border-gray-300 w-full my-1'></div>
                                 <button onClick={handleSignOut} className='text-left font-semibold flex items-center gap-1 hover:bg-gray-200 cursor-pointer btn rounded text-red-500 w-full text-base'>LogOut<span><MdLogout size={20} className='rotate-180 mt-[2px]' /></span></button>
-
-
                             </div>
                         </div> : <>
                             <Link to={"/signin"} className="btn btn-sm sm:btn myBtn">LogIn</Link>
                             <Link to={"/register"} className="btn btn-sm sm:btn myBtn hover:ml-[2px]">Register</Link>
                         </>
-
                         }
-
-
                     </div>
                 </div>
             </section>
