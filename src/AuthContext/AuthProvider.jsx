@@ -17,40 +17,24 @@ const AuthProvider = ({ children }) => {
             setDark(darkState)
         }
     }, [dark])
-
     const setDarkMode = (value) => {
         setDark(value)
         localStorage.setItem("darkMode", JSON.stringify(value))
-
     }
-
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
     const signInUser = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
-
-
-
-
-
-
     useEffect(() => {
         const unsubscibe = onAuthStateChanged(auth, (user) => {
             setUser(user)
             setLoading(false)
             console.log("setting loading")
-
         })
         return () => unsubscibe()
     }, [])
-
-
-
-
-
-
     const userDetails = {
         user,
         createUser,
@@ -59,7 +43,6 @@ const AuthProvider = ({ children }) => {
         loading,
         dark,
         setDarkMode,
-
     }
     return <AuthContext value={userDetails}>{children}</AuthContext>
 };
