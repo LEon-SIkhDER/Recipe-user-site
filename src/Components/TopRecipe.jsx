@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 const TopRecipe = () => {
     const [data, setData] = useState([])
     useEffect(() => {
-        fetch("http://localhost:3000/sort6")
+        fetch("https://recipe-server-blush-six.vercel.app/sort6")
             .then(res => res.json())
             .then(data => {
                 console.log(data)

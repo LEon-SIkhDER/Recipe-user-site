@@ -4,7 +4,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../AuthContext/AuthContext';
 
 const AddRecipe = () => {
-    const {user} = use(AuthContext)
+    const { user } = use(AuthContext)
     const [loading, setLoading] = useState(false)
     const [category, setCategory] = useState([])
 
@@ -39,9 +39,14 @@ const AddRecipe = () => {
         const createdAt = `${creationMonth} ${creationDate} at ${creationTime}`
         const uid = user.uid
 
-        const recipeData = { title, photoUrl, category, cuisineType, ingredients, instructions, time, likes, createdAt,uid }
+        const recipeData = { title, photoUrl, category, cuisineType, ingredients, instructions, time, likes, createdAt, uid }
 
-        fetch("http://localhost:3000/recipes", {
+
+
+
+
+
+        fetch("https://recipe-server-blush-six.vercel.app/recipes", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -49,20 +54,15 @@ const AddRecipe = () => {
             body: JSON.stringify(recipeData)
 
         })
-            .then(result => {
-                console.log(result)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
                 setLoading(false)
-                if (result.status === 200) {
-                    setLoading(false)
+                if (data.insertedId) {
                     toast.success("Recipe added successfully")
 
                 }
             })
-            .catch(error => {
-                console.log(error)
-                setLoading(false)
-            })
-
 
 
 

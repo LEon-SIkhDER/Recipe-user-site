@@ -9,6 +9,7 @@ import RecipeDetails from "./Components/RecipeDetails";
 import MyRecipes from "./Components/MyRecipes";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "./Components/ErrorPage";
+import Update from "./Components/Update";
 
 export const router = createBrowserRouter([
   {
@@ -33,14 +34,39 @@ export const router = createBrowserRouter([
 
       {
         path: "/recipe-details/:id",
-        loader: ({ params }) => fetch(`http://localhost:3000/recipes/${params.id}`),
+        loader: ({ params }) => fetch(`https://recipe-server-blush-six.vercel.app/recipes/${params.id}`),
         element: <PrivateRoute><RecipeDetails></RecipeDetails></PrivateRoute>
       },
       {
         path: "/my-recipe/:id",
-        loader: ({ params }) => fetch(`http://localhost:3000/my-recipe/${params.id}`),
+        loader: ({ params }) => fetch(`https://recipe-server-blush-six.vercel.app/my-recipe/${params.id}`),
         element: <PrivateRoute><MyRecipes></MyRecipes></PrivateRoute>
       },
+
+
+
+      {
+        path: "/update/:id",
+        loader: ({ params }) => fetch(`https://recipe-server-blush-six.vercel.app/recipes/${params.id}`),
+        element: <PrivateRoute><Update></Update></PrivateRoute>
+      },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     ]
   },

@@ -10,7 +10,7 @@ import loadingAnimation from "../Lottie/Loading.json"
 const AllRecipes = () => {
     const [initialData, setInitialData] = useState()
     useEffect(() => {
-        fetch("http://localhost:3000/recipes")
+        fetch("https://recipe-server-blush-six.vercel.app/recipes")
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -25,7 +25,7 @@ const AllRecipes = () => {
 
         console.log(cuisineType)
 
-        fetch(`http://localhost:3000/sort/${cuisineType}`)
+        fetch(`https://recipe-server-blush-six.vercel.app/sort/${cuisineType}`)
         .then(res=>res.json())
         .then(data=>{
             setInitialData(data)

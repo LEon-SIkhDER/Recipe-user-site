@@ -12,7 +12,7 @@ const MyRecipes = () => {
                 <h1 className='text-5xl font-semibold text-center mb-5'>My Recipes</h1>
                 <p className='text-center  mb-14'>Cook, taste, and share the flavors you love — from everyday meals to special creations that bring joy to the table.</p>
                 <div className='grid sm:grid-cols-4 grid-cols-2 gap-8 '>
-                    {data.map((d, index) =>
+                    {data?.map((d, index) =>
                         <div className='flex flex-col'>
                             <Fade delay={index <= 6 ? 100 * index : 20 * index} triggerOnce>
                                 <div>
