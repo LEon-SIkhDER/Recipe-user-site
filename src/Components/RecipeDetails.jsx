@@ -24,7 +24,7 @@ const RecipeDetails = () => {
         if (likeState) {
             setTimeout(() => {
                 const likeInfo = { likes: likeCount }
-                fetch(`https://recipe-server-blush-six.vercel.app/recipes/${data._id}`, {
+                fetch(`http://localhost:3000/recipes/${data._id}`, {
                     method: "PATCH",
                     headers: {
                         "content-type": "application/json"

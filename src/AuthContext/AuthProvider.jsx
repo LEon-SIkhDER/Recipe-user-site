@@ -4,7 +4,15 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import { auth } from '../../firebase.init';
 
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState(() => {
+        const savedUser = localStorage.getItem("user")
+        if(savedUser){
+            return JSON.parse(savedUser)
+        }
+        else{
+            return null
+        }
+    })
     const [loading, setLoading] = useState(true)
     const [dark, setDark] = useState(false)
     useEffect(() => {
@@ -30,9 +38,16 @@ const AuthProvider = ({ children }) => {
         const unsubscibe = onAuthStateChanged(auth, (user) => {
             setUser(user)
             setLoading(false)
+            if (user) {
+                localStorage.setItem("user", JSON.stringify((user)))
+            }
+            else {
+                localStorage.removeItem("user")
+            }
         })
         return () => unsubscibe()
     }, [])
+
     const userDetails = {
         user,
         createUser,
@@ -42,6 +57,11 @@ const AuthProvider = ({ children }) => {
         dark,
         setDarkMode,
     }
+    console.log(user?.photoURL)
+
+
+
+
     return <AuthContext value={userDetails}>{children}</AuthContext>
 };
 

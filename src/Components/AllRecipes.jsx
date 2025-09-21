@@ -1,19 +1,42 @@
 import Lottie from 'lottie-react';
 import { ThumbsUp } from 'lucide-react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { IoMdTime } from 'react-icons/io';
-import { Link, useLoaderData } from 'react-router';
-
-const handleSort = (e) => {
-    e.preventDefault()
-    const cuisineType = e.target.value
-    console.log(cuisineType)
+import { Link } from 'react-router';
+import loadingAnimation from "../Lottie/Loading.json"
 
 
-}
 const AllRecipes = () => {
-    const data = useLoaderData()
+    const [initialData, setInitialData] = useState()
+    useEffect(() => {
+        fetch("http://localhost:3000/recipes")
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setInitialData(data)
+            })
+
+    }, [])
+
+    const handleSort = (e) => {
+        e.preventDefault()
+        const cuisineType = e.target.value
+
+        console.log(cuisineType)
+
+        fetch(`http://localhost:3000/sort/${cuisineType}`)
+        .then(res=>res.json())
+        .then(data=>{
+            setInitialData(data)
+            console.log(data)
+        })
+        
+
+
+    }
+
+
     return (
         <div className='bg-[#f6efea] py-20'>
             <section >
@@ -21,7 +44,7 @@ const AllRecipes = () => {
                 <p className='text-center  '>These top-rated dishes are packed with flavor, tested by food lovers, and guaranteed to satisfy your cravings.</p>
                 <div className='text-right mb-14'>
                     <form onChange={handleSort}>
-                        <select name="cuisineType" className="select w-auto" defaultValue={"Cuisine Type"}  >
+                        <select name="cuisineType" className="select focus:outline-none focus:border-[#d1d1d1] w-auto active:scale-95" defaultValue={"Cuisine Type"}  >
                             <option disabled >Cuisine Type</option>
                             <option value="Italian">Italian</option>
                             <option value="Mexican">Mexican</option>
@@ -31,10 +54,15 @@ const AllRecipes = () => {
                         </select>
                     </form>
                 </div>
+                {!initialData && <div className='w-2xs mx-auto'>
+                    <Lottie animationData={loadingAnimation} />
+                </div>}
+
                 <div className='grid sm:grid-cols-4 grid-cols-2 sm:gap-8 gap-4'>
-                    {data.map((d, index) =>
+
+                    {initialData?.map((d, index) =>
                         <div className='flex flex-col' key={index}>
-                            <Fade delay={index <= 7 ? 100 * index : 20 * index} triggerOnce>
+                            <Fade delay={100} triggerOnce>
                                 <div>
                                     <Link to={`/recipe-details/${d._id}`}>
                                         <div style={{

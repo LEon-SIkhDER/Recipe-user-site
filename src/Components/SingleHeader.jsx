@@ -97,7 +97,7 @@ const SingleHeader = () => {
                             </div>
                         </div> : <>
                             <Link to={"/signin"} className="btn btn-sm sm:btn myBtn">LogIn</Link>
-                            <Link to={"/register"} className="btn btn-sm sm:btn sm:block hidden myBtn hover:ml-[2px]">Register</Link>
+                            <Link to={"/register"} className="btn btn-sm sm:btn sm:flex hidden myBtn hover:ml-[2px]">Register</Link>
                         </>
                         }
                     </div>
