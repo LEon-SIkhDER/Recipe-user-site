@@ -24,18 +24,18 @@ export const router = createBrowserRouter([
         element: <PrivateRoute><AddRecipe></AddRecipe></PrivateRoute>
 
       },
-      { path: "/all-recipes", loader: () => fetch("http://localhost:3000/recipes"), Component: AllRecipes },
+      { path: "/all-recipes", loader: () => fetch("https://recipe-server-blush-six.vercel.app/recipes"), Component: AllRecipes },
 
 
 
       {
         path: "/recipe-details/:id",
-        loader: ({ params }) => fetch(`http://localhost:3000/recipes/${params.id}`),
+        loader: ({ params }) => fetch(`https://recipe-server-blush-six.vercel.app/recipes/${params.id}`),
         element: <PrivateRoute><RecipeDetails></RecipeDetails></PrivateRoute>
       },
       {
         path: "/my-recipe/:id",
-        loader: ({ params }) => fetch(`http://localhost:3000/my-recipe/${params.id}`),
+        loader: ({ params }) => fetch(`https://recipe-server-blush-six.vercel.app/my-recipe/${params.id}`),
         element: <PrivateRoute><MyRecipes></MyRecipes></PrivateRoute>
       },
       

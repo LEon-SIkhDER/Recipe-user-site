@@ -1,3 +1,4 @@
+import { ThumbsUp } from 'lucide-react';
 import React from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { IoMdTime } from 'react-icons/io';
@@ -11,7 +12,7 @@ const MyRecipes = () => {
                 <h1 className='text-5xl font-semibold text-center mb-5'>My Recipes</h1>
                 <p className='text-center  mb-14'>Cook, taste, and share the flavors you love — from everyday meals to special creations that bring joy to the table.</p>
                 <div className='grid sm:grid-cols-4 grid-cols-2 gap-8 '>
-                    {data.map((d,index) =>
+                    {data.map((d, index) =>
                         <div className='flex flex-col'>
                             <Fade delay={index <= 6 ? 100 * index : 20 * index} triggerOnce>
                                 <div>
@@ -39,7 +40,11 @@ const MyRecipes = () => {
                                 </div>
                             </Fade>
                             <div className=' flex-1' >
-                                <h1 className='text-sm text-[#e90000] font-semibold mt-1 '>{d.title}</h1>
+                                <div className='flex justify-between mt-1'>
+                                    <h1 className='text-sm text-[#e90000] font-semibold  '>{d.title}</h1>
+                                    <div className='flex  gap-0.5'><span className='mt-[2px]'><ThumbsUp color="#595959" size={14} /></span><h1 className='text-sm'>{d.likes}</h1></div>
+
+                                </div>  
                                 <h1 className='text-xl text-black font-semibold'>{d.ingredients}.</h1>
                             </div>
                             <div className='flex  justify-between  '>

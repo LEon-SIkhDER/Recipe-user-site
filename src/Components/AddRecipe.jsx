@@ -41,7 +41,7 @@ const AddRecipe = () => {
 
         const recipeData = { title, photoUrl, category, cuisineType, ingredients, instructions, time, likes, createdAt,uid }
 
-        fetch("http://localhost:3000/recipes", {
+        fetch("https://recipe-server-blush-six.vercel.app/recipes", {
             method: "POST",
             headers: {
                 "content-type": "application/json"

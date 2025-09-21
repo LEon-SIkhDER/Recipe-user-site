@@ -1,4 +1,4 @@
-import { Heart } from 'lucide-react';
+import { Heart, ThumbsUp } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { IoMdTime } from 'react-icons/io';
@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 const TopRecipe = () => {
     const [data, setData] = useState([])
     useEffect(() => {
-        fetch("http://localhost:3000/sort6")
+        fetch("https://recipe-server-blush-six.vercel.app/sort6")
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -51,7 +51,11 @@ const TopRecipe = () => {
                                 </Fade>
                             </div>
                             <div className='flex-1 mb-5'>
-                                <h1 className='text-sm text-[#e90000] font-semibold mt-1'>{d.title}</h1>
+                                <div className='flex justify-between mt-1'>
+                                    <h1 className='text-sm text-[#e90000] font-semibold  '>{d.title}</h1>
+                                    <div className='flex  gap-0.5 dark:text-white'><span className='mt-[2px]'><ThumbsUp className='dark:text-white' size={14} /></span><h1 className='text-sm'>{d.likes}</h1></div>
+
+                                </div>
                                 <h1 className='text-xl text-black dark:text-white font-semibold'>{d.ingredients}.</h1>
                             </div>
                             <div className='flex justify-between dark:text-white'>

@@ -1,18 +1,37 @@
 import Lottie from 'lottie-react';
+import { ThumbsUp } from 'lucide-react';
 import React from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { IoMdTime } from 'react-icons/io';
 import { Link, useLoaderData } from 'react-router';
 
+const handleSort = (e) => {
+    e.preventDefault()
+    const cuisineType = e.target.value
+    console.log(cuisineType)
 
+
+}
 const AllRecipes = () => {
     const data = useLoaderData()
     return (
         <div className='bg-[#f6efea] py-20'>
             <section >
                 <h1 className='text-5xl font-semibold text-center mb-5'>All Recipes</h1>
-                <p className='text-center  mb-14'>These top-rated dishes are packed with flavor, tested by food lovers, and guaranteed to satisfy your cravings.</p>
-                <div className='grid sm:grid-cols-4 grid-cols-2 gap-8 '>
+                <p className='text-center  '>These top-rated dishes are packed with flavor, tested by food lovers, and guaranteed to satisfy your cravings.</p>
+                <div className='text-right mb-14'>
+                    <form onChange={handleSort}>
+                        <select name="cuisineType" className="select w-auto" defaultValue={"Cuisine Type"}  >
+                            <option disabled >Cuisine Type</option>
+                            <option value="Italian">Italian</option>
+                            <option value="Mexican">Mexican</option>
+                            <option value="Indian">Indian</option>
+                            <option value="Chinese">Chinese</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </form>
+                </div>
+                <div className='grid sm:grid-cols-4 grid-cols-2 sm:gap-8 gap-4'>
                     {data.map((d, index) =>
                         <div className='flex flex-col' key={index}>
                             <Fade delay={index <= 7 ? 100 * index : 20 * index} triggerOnce>
@@ -24,15 +43,15 @@ const AllRecipes = () => {
                                             className='bg-no-repeat bg-[length:100%] hover:bg-[length:120%] transition-all duration-300 p-4 rounded-xl bg-center aspect-[1/1.25] cursor-pointer'
                                         >
                                             <div className='flex justify-between items-center'>
-                                                    <div className='bg-white text-[#e92d28] inline-flex px-2 rounded-full gap-1 py-[5px] items-center'>
-                                                        <span className='inline-block'>
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="red" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg>
-                                                        </span>
-                                                        <h1 className='text-[#e92d28] font-semibold bg-white inline-block   rounded-full text-sm'>Top</h1>
-                                                    </div>
-                                                    <div className='bg-white p-2 rounded-full'>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="red" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg>
-                                                    </div>
+                                                <div className='bg-white text-[#e92d28] inline-flex px-2 rounded-full gap-1 py-[5px] items-center'>
+                                                    <span className='inline-block'>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="red" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" /></svg>
+                                                    </span>
+                                                    <h1 className='text-[#e92d28] font-semibold bg-white inline-block   rounded-full text-sm'>Top</h1>
+                                                </div>
+                                                <div className='bg-white p-2 rounded-full'>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="red" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-icon lucide-heart"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg>
+                                                </div>
                                             </div>
                                         </div>
                                     </Link>
@@ -41,7 +60,11 @@ const AllRecipes = () => {
                             </Fade>
                             <div className=' flex-1' >
                                 {/* <Fade > */}
-                                <h1 className='text-sm text-[#e90000] font-semibold mt-1 '>{d.title}</h1>
+                                <div className='flex justify-between mt-1'>
+                                    <h1 className='text-sm text-[#e90000] font-semibold  '>{d.title}</h1>
+                                    <div className='flex  gap-0.5'><span className='mt-[2px]'><ThumbsUp color="#595959" size={14} /></span><h1 className='text-sm'>{d.likes}</h1></div>
+
+                                </div>
                                 <h1 className='text-xl text-black font-semibold'>{d.ingredients}.</h1>
                                 {/* </Fade> */}
                             </div>

@@ -40,11 +40,11 @@ const SingleHeader = () => {
     }
     return (
         <div>
-            <section>
-                <div className="navbar bg-transparent px-0 ">
+            <div className={`${location.pathname !== "/"&&" max-w-[1400px] mx-auto "}`}>
+                <div className={`navbar bg-transparent ${location.pathname !== "/"?"px-2":"px-0"}`}>
                     <div className="navbar-start">
                         <div className="dropdown" onClick={() => setVisibility(false)}>
-                            <div tabIndex={0} role="button" className="btn px-2 btn-ghost lg:hidden">
+                            <div tabIndex={0} role="button" className="btn mr-2 px-0 btn-ghost lg:hidden scale-125">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
                             </div>
                             <ul
@@ -97,12 +97,12 @@ const SingleHeader = () => {
                             </div>
                         </div> : <>
                             <Link to={"/signin"} className="btn btn-sm sm:btn myBtn">LogIn</Link>
-                            <Link to={"/register"} className="btn btn-sm sm:btn myBtn hover:ml-[2px]">Register</Link>
+                            <Link to={"/register"} className="btn btn-sm sm:btn sm:block hidden myBtn hover:ml-[2px]">Register</Link>
                         </>
                         }
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
     );
 };
