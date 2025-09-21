@@ -1,17 +1,39 @@
 import { ThumbsUp } from 'lucide-react';
-import React from 'react';
+import React, {  useEffect, useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { IoMdTime } from 'react-icons/io';
-import { Link, useLoaderData } from 'react-router';
+import { Link,  useParams } from 'react-router';
+import loadingAnimation from "../Lottie/Loading.json"
+import Lottie from 'lottie-react';
+import { AuthContext } from '../AuthContext/AuthContext';
+
 
 const MyRecipes = () => {
-    const data = useLoaderData()
+    const [data, setData] = useState()
+    const { id } = useParams()
+
+    useEffect(() => {
+        fetch(`https://recipe-server-blush-six.vercel.app/my-recipe/${id}`)
+            .then(res => res.json())
+            .then(data => setData(data))
+
+    }, [])
+
+    if (!data) {
+        return( <div className='w-2xs mx-auto'>
+            <Lottie animationData={loadingAnimation} />
+        </div>)
+    }
+
+
+
+
     return (
         <div className='bg-[#f6efea] py-20'>
             <section >
                 <h1 className='text-5xl font-semibold text-center mb-5'>My Recipes</h1>
                 <p className='text-center  mb-14'>Cook, taste, and share the flavors you love — from everyday meals to special creations that bring joy to the table.</p>
-                <div className='grid sm:grid-cols-4 grid-cols-2 gap-8 '>
+                <div className='grid sm:grid-cols-4 grid-cols-2 sm:gap-8 gap-4'>
                     {data?.map((d, index) =>
                         <div className='flex flex-col'>
                             <Fade delay={index <= 6 ? 100 * index : 20 * index} triggerOnce>
@@ -44,7 +66,7 @@ const MyRecipes = () => {
                                     <h1 className='text-sm text-[#e90000] font-semibold  '>{d.title}</h1>
                                     <div className='flex  gap-0.5'><span className='mt-[2px]'><ThumbsUp color="#595959" size={14} /></span><h1 className='text-sm'>{d.likes}</h1></div>
 
-                                </div>  
+                                </div>
                                 <h1 className='text-xl text-black font-semibold'>{d.ingredients}.</h1>
                             </div>
                             <div className='flex  justify-between  '>

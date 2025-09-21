@@ -39,7 +39,6 @@ export const router = createBrowserRouter([
       },
       {
         path: "/my-recipe/:id",
-        loader: ({ params }) => fetch(`https://recipe-server-blush-six.vercel.app/my-recipe/${params.id}`),
         element: <PrivateRoute><MyRecipes></MyRecipes></PrivateRoute>
       },
 

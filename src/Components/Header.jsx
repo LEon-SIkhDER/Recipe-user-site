@@ -1,13 +1,15 @@
-import React, { use } from 'react';
+import React, {  } from 'react';
 import { Link } from 'react-router';
 import { AuthContext } from '../AuthContext/AuthContext';
 import SingleHeader from './SingleHeader';
 import { Fade } from 'react-awesome-reveal';
+import Lottie from 'lottie-react';
+import scroll from "../Lottie/scroll.json"
 
 const Header = () => {
     // const [visibility, setVisibility] = useState(false)
     return (
-        <div className=' bg-[position:70%_50%] sm:bg-left bg-no-repeat bg-cover ' style={{ backgroundImage: 'url("/hero.jpg")' }}>
+        <div className=' bg-[position:70%_50%] sm:bg-left bg-no-repeat bg-cover relative' style={{ backgroundImage: 'url("/hero.jpg")' }}>
             <section className='h-dvh'>
                 <SingleHeader></SingleHeader>
                 <div className='h-full flex flex-col justify-center w-auto  sm:w-[70%] items-center'>
@@ -24,8 +26,15 @@ const Header = () => {
                             </Link>
                         </Fade>
                     </div>
+
                 </div>
+
+
             </section>
+            <div className=' absolute right-0 bottom-0'>
+                <Lottie animationData={scroll}></Lottie>
+            </div>
+
         </div>
     );
 };
