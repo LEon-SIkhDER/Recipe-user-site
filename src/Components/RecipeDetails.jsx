@@ -107,7 +107,7 @@ const RecipeDetails = () => {
                         <div className='flex '><span className='font-semibold text-lg '>Instructions:</span><span className='text-justify mt-1'>{data.instructions}</span></div>
                         <div><span className='font-semibold text-lg'>Cooking Time:</span><span>{data.time}Min.</span></div>
                     </div>
-                    <div className='flex justify-between'>
+                    <div className='flex justify-between mt-10'>
                         <button onClick={handleDelete} disabled={user.uid !== data.uid} className='btn bg-red-500 text-white'><Trash size={20} />Delete</button>
 
                         <button className='btn bg-blue-800 text-white' disabled={user.uid !== data.uid} ><Link to={`/update/${data._id}`} className='flex gap-1.5'><SquarePen size={20} />Update</Link></button>
