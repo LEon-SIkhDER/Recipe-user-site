@@ -1,11 +1,15 @@
 import React, { use, useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 import { AuthContext } from '../AuthContext/AuthContext';
 import { toast, ToastContainer } from 'react-toastify';
+import { SquarePen, Trash } from 'lucide-react';
+import Swal from 'sweetalert2';
 
 const RecipeDetails = () => {
     const data = useLoaderData()
+    const navigate = useNavigate()
     const { user } = use(AuthContext)
+    console.log(user.uid)
     const [like, setLike] = useState(false)
     const [likeState, setLikeState] = useState(false)
     const [likeCount, setLikeCount] = useState(data.likes)
@@ -34,6 +38,53 @@ const RecipeDetails = () => {
             }, 1000);
         }
     }, [likeCount])
+
+    const handleDelete = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:3000/recipes/${data._id}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            }).then(()=>{
+                                navigate(`/my-recipe/${user.uid}`)
+                            })
+                        }
+                        console.log(data)
+
+
+
+                    })
+
+            }
+        });
+    }
+console.log(data._id)
+
+
+
+
+
+
+
+
+
+
+
     return (
         <div className=' bg-[#f6efea] py-20'>
             <ToastContainer />
@@ -56,6 +107,10 @@ const RecipeDetails = () => {
                         <div><span className='font-semibold text-lg'>Ingredients:</span><span>{data.ingredients}.</span></div>
                         <div className='flex '><span className='font-semibold text-lg '>Instructions:</span><span className='text-justify mt-1'>{data.instructions}</span></div>
                         <div><span className='font-semibold text-lg'>Cooking Time:</span><span>{data.time}Min.</span></div>
+                    </div>
+                    <div className='flex justify-between'>
+                        <button onClick={handleDelete} disabled={!user.uid === data.uid} className='btn bg-red-500 text-white'><Trash size={20} />Delete</button>
+                        <button className='btn bg-blue-800 text-white' ><SquarePen size={20} />Update</button>
                     </div>
                     {/* <button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-thumbs-up-icon lucide-thumbs-up"><path d="M7 10v12" /><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z" /></svg></button> */}
                 </div>
