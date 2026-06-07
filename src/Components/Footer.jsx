@@ -14,7 +14,7 @@ const Footer = () => {
                         <span className=' bg-[#dddddd] p-4 rounded-full hover:bg-[#e92d28] duration-200 hover:text-white cursor-pointer'><FaYoutube size={20} /></span>
                         <span className=' bg-[#dddddd] p-4 rounded-full hover:bg-[#e92d28] duration-200 hover:text-white cursor-pointer'><FaXTwitter size={20} /></span>
                     </div>
-                    <div className='*:font-bold sm:flex justify-between w-full hidden  dark:text-white'>
+                    <div className='*:font-bold sm:flex justify-between w-full hidden  dark:text-white *:px-1 *:cursor-pointer *:select-none '>
                         <h2>All Recipe</h2>
                         <h2>Video Recipe</h2>
                         <h2>Top Category</h2>
