@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
-import React, {  useEffect, useState } from 'react';
-import {  ToastContainer } from 'react-toastify';
+import React, { useEffect, useState } from 'react';
+import { ToastContainer } from 'react-toastify';
 import { AuthContext } from '../AuthContext/AuthContext';
 import { useLoaderData } from 'react-router';
 import Swal from 'sweetalert2';
@@ -10,6 +10,7 @@ const Update = () => {
     const recipePreData = useLoaderData()
     console.log(recipePreData._id)
     const [loading, setLoading] = useState(false)
+
     const [category, setCategory] = useState([])
     useEffect(() => {
         setCategory(recipePreData.category)
@@ -112,7 +113,7 @@ const Update = () => {
 
     }
     return (
-        <div className='mb-20 mt-10'>
+        <div className='pb-20 pt-10 bg-[#f6efea]'>
             <ToastContainer />
             <section>
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mx-auto">
@@ -128,27 +129,27 @@ const Update = () => {
                             <label className="label text-black font-semibold">Category</label>
                             <div className='grid grid-cols-3 gap-5 text-sm sm:*:text-base'>
                                 <label>
-                                    <input checked={recipePreData.category.includes("Breakfast")} className='checkbox mr-2' type="checkbox" value={"Breakfast"} onChange={handleCheckbox} />Breakfast
+                                    <input defaultChecked={recipePreData.category.includes("Breakfast")} className='checkbox mr-2' type="checkbox" value={"Breakfast"} onChange={handleCheckbox} />Breakfast
                                 </label>
 
                                 <label>
-                                    <input checked={recipePreData.category.includes("Lunch")} className='checkbox mr-2' type="checkbox" value={"Lunch"} onChange={handleCheckbox} />Lunch
+                                    <input defaultChecked={recipePreData.category.includes("Lunch")} className='checkbox mr-2' type="checkbox" value={"Lunch"} onChange={handleCheckbox} />Lunch
                                 </label>
 
                                 <label>
-                                    <input checked={recipePreData.category.includes("Dinner")} className='checkbox mr-2' type="checkbox" value={"Dinner"} onChange={handleCheckbox} />Dinner
+                                    <input defaultChecked={recipePreData.category.includes("Dinner")} className='checkbox mr-2' type="checkbox" value={"Dinner"} onChange={handleCheckbox} />Dinner
                                 </label>
 
                                 <label>
-                                    <input checked={recipePreData.category.includes("Dessert")} className='checkbox mr-2' type="checkbox" value={"Dessert"} onChange={handleCheckbox} />Dessert
+                                    <input defaultChecked={recipePreData.category.includes("Dessert")} className='checkbox mr-2' type="checkbox" value={"Dessert"} onChange={handleCheckbox} />Dessert
                                 </label>
 
                                 <label>
-                                    <input checked={recipePreData.category.includes("Vegan")} className='checkbox mr-2' type="checkbox" value={"Vegan "} onChange={handleCheckbox} />Vegan
+                                    <input defaultChecked={recipePreData.category.includes("Vegan")} className='checkbox mr-2' type="checkbox" value={"Vegan"} onChange={handleCheckbox} />Vegan
                                 </label>
 
                                 <label>
-                                    <input checked={recipePreData.category.includes("Others")} className='checkbox mr-2' type="checkbox" value={"Others"} onChange={handleCheckbox} />Others
+                                    <input defaultChecked={recipePreData.category.includes("Others")} className='checkbox mr-2' type="checkbox" value={"Others"} onChange={handleCheckbox} />Others
                                 </label>
                             </div>
                             <label className="label text-black font-semibold">Cuisine Type</label>
@@ -167,7 +168,7 @@ const Update = () => {
                             <textarea type="text" className="textarea" placeholder="Instructions" name='instructions' defaultValue={recipePreData.instructions} />
 
 
-                            <label className="label text-black font-semibold">Preparation Time</label>
+                            <label className="label text-black font-semibold">Preparation Time(min)</label>
                             <input type="text" className="input" placeholder="Preparation Time" name='time' defaultValue={recipePreData.time} />
 
                             {/* <div><a className="link link-hover">Forgot password?</a></div> */}

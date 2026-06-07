@@ -80,7 +80,7 @@ const AddRecipe = () => {
 
     }
     return (
-        <div className='mb-20 mt-10'>
+        <div className='pb-20 pt-10 bg-[#f6efea]'>
             <ToastContainer />
             <section>
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mx-auto">
@@ -135,7 +135,7 @@ const AddRecipe = () => {
                             <input type="text" className="input" placeholder="Instructions" name='instructions' />
 
 
-                            <label className="label text-black font-semibold">Preparation Time</label>
+                            <label className="label text-black font-semibold">Preparation Time(min)</label>
                             <input type="text" className="input" placeholder="Preparation Time" name='time' />
 
                             {/* <div><a className="link link-hover">Forgot password?</a></div> */}

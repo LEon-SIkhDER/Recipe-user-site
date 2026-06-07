@@ -19,6 +19,7 @@ const RecipeDetails = () => {
         }, 500);
     }
     const handleLike = () => {
+
         setLike(true)
         setLikeCount(likeCount + 1)
         setLikeState(true)

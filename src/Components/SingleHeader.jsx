@@ -40,8 +40,8 @@ const SingleHeader = () => {
     }
     return (
         <div>
-            <div className={`${location.pathname !== "/"&&" max-w-[1400px] mx-auto "}`}>
-                <div className={`navbar bg-transparent ${location.pathname !== "/"?"px-2":"px-0"}`}>
+            <div className={`${location.pathname !== "/" ? " max-w-[1400px] mx-auto " : ''}`}>
+                <div className={`navbar bg-transparent ${location.pathname !== "/" ? "px-2" : "px-0"}`}>
                     <div className="navbar-start">
                         <div className="dropdown" onClick={() => setVisibility(false)}>
                             <div tabIndex={0} role="button" className="btn mr-2 px-0 btn-ghost lg:hidden scale-125">
@@ -57,8 +57,8 @@ const SingleHeader = () => {
                                 <li className={`text-black sm:text-white ${location.pathname !== "/" && "hidden"}`}>
                                     <a className='block text-lg' onClick={(e) => { e.stopPropagation(), setVisibility(!visibility) }}>Themes</a>
                                     <ul className={`p-2   ${visibility ? "block" : 'hidden'}`} onClick={(e) => e.stopPropagation()}>
-                                        <li onClick={()=>setDarkMode(false)}><a className={`text-lg ${!dark&&"bg-black text-white"}`}>Light Mode</a></li>
-                                        <li onClick={()=>setDarkMode(true)}><a className={`text-lg ${dark&&"bg-black text-white"}`}>Dark Mode</a></li>
+                                        <li onClick={() => setDarkMode(false)}><a className={`text-lg ${!dark && "bg-black text-white"}`}>Light Mode</a></li>
+                                        <li onClick={() => setDarkMode(true)}><a className={`text-lg ${dark && "bg-black text-white"}`}>Dark Mode</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -78,15 +78,15 @@ const SingleHeader = () => {
                                 {/* <details> */}
                                 <summary className={`text-lg ${location.pathname === "/" ? "text-white" : "text-black"}`}>Themes</summary>
                                 <ul className="p-2 hidden  group-hover:block bg-white rounded absolute top-[100%] z-10 shadow">
-                                    <li onClick={()=>setDarkMode(false)} className='text-black '><a className={`text-lg ${!dark&&"bg-black text-white"}`} style={{ textWrap: 'inherit' }}>Light Mode</a></li>
-                                    <li onClick={()=>setDarkMode(true)} className='text-black'><a className={`text-lg ${dark&&"bg-black text-white"}`} style={{ textWrap: 'inherit' }}>Dark Mode</a></li>
+                                    <li onClick={() => setDarkMode(false)} className='text-black '><a className={`text-lg ${!dark && "bg-black text-white"}`} style={{ textWrap: 'inherit' }}>Light Mode</a></li>
+                                    <li onClick={() => setDarkMode(true)} className='text-black'><a className={`text-lg ${dark && "bg-black text-white"}`} style={{ textWrap: 'inherit' }}>Dark Mode</a></li>
                                 </ul>
                                 {/* </details> */}
                             </li>
                         </ul>
                     </div>
                     <div className="navbar-end gap-2.5">
-                        {user ? <div className='relative '>
+                        {user ? <div className='relative  '>
                             <img className='w-10 h-10 cursor-pointer rounded-full hover:scale-105 ' src={user?.photoURL} alt="User Image" onClick={() => setDropDown(!dropdown)} />
                             <div className={`bg-white shadow text-center p-3.5 absolute right-0 whitespace-nowrap z-10 rounded ${dropdown ? "block" : "hidden"}`}>
                                 <img className='w-20 h-20 mx-auto rounded-full' src={user?.photoURL} alt="" />
