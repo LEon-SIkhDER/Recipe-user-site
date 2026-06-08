@@ -19,8 +19,8 @@ const Update = () => {
 
 
     const handleCheckbox = (e) => {
-        const { value, checked } = e.target
-        if (checked) {
+        const { value, defaultChecked } = e.target
+        if (defaultChecked) {
             setCategory([...category, value])
         }
         else {
@@ -146,12 +146,12 @@ const Update = () => {
 
                                 <label>
                                     <input defaultChecked={recipePreData.category.includes("Vegan")} className='checkbox mr-2' type="checkbox" value={"Vegan"} onChange={handleCheckbox} />Vegan
-                                </label>
+                                </label >
 
                                 <label>
                                     <input defaultChecked={recipePreData.category.includes("Others")} className='checkbox mr-2' type="checkbox" value={"Others"} onChange={handleCheckbox} />Others
                                 </label>
-                            </div>
+                            </div >
                             <label className="label text-black font-semibold">Cuisine Type</label>
 
                             <select name="cuisineType" className="select " required defaultValue={recipePreData.cuisineType}>
@@ -176,12 +176,12 @@ const Update = () => {
                             {/* <h1 className='text-sm font-semibold text-black '>Already Have An Account? <Link to={"/signin"} className='text-pink-600 underline'>LogIn</Link></h1> */}
                             <button className="btn btn-neutral mt-4">{loading ? <span className="loading loading-spinner loading-md"></span> : "Update Recipe"}</button>
 
-                        </form>
+                        </form >
 
-                    </div>
-                </div>
-            </section>
-        </div>
+                    </div >
+                </div >
+            </section >
+        </div >
     );
 };
 
