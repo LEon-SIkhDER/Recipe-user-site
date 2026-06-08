@@ -4,7 +4,7 @@ A responsive recipe sharing application where users can browse recipes, sign in,
 
 ## Live Links
 
-- Client: Add your deployed client URL here
+- Client: https://ranna-ghor-7580.firebaseapp.com/
 - Server API: https://recipe-server-blush-six.vercel.app
 
 ## Features
